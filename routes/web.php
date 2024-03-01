@@ -22,3 +22,9 @@ Route::get('/undangan-cetak', function () {
 Route::get('/detail', function () {
     return view('frontend.detail');
 });
+Route::get('/dashboard', function () {
+    return view('backend.index');
+});
+Route::get('/dashboard-undangan', function () {
+    return view('backend.undangancetak');
+});
