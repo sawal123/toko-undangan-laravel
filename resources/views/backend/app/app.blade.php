@@ -13,9 +13,8 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+    <link href="{{asset('admin/assets/libs/mobius1-selectr/selectr.min.css')}}" rel="stylesheet" type="text/css" />
 
-    {{-- <link href="{{asset('admin/assets/libs/simple-datatables/style.css')}}" rel="stylesheet" type="text/css" /> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('admin/assets/libs/datatables.net/css/datatables.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('admin/assets/libs/datatables.net/css/dataTables.bootstrap5.css') }}">
 
 
@@ -52,8 +51,11 @@
 
     <!-- App js -->
 
+    <script src="{{asset('admin/assets/libs/mobius1-selectr/selectr.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/pages/forms-advanced.js')}}"></script>
 
-
+    <script src="{{asset('admin/assets/libs/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/pages/form-editor.init.js')}}"></script>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>

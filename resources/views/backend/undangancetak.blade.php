@@ -27,10 +27,23 @@
                 <div class="row">
                     <div class="col d-flex justify-content-end">
                         <div class="mt-3">
-                            <button class="btn btn-primary " > <i class="mdi mdi-plus"></i> Tambah</button>
+                            <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#addundangancetak"
+                                onclick="showModal()"> <i class="mdi mdi-plus"></i> Tambah</button>
                         </div>
                     </div>
                 </div>
+                @include('backend.ui-modal.modaladdundangan')
+                {{-- <div id="modalContainer"></div>
+                <script>
+                    function showModal() {
+                        var modalContainer = document.getElementById('modalContainer');
+                        modalContainer.innerHTML = `@include('backend.ui-modal.modaladdundangan')`
+                        var modal = new bootstrap.Modal(document.getElementById('addundangancetak'));
+                        modal.show();
+                    }
+                </script> --}}
+
+
 
                 <div class="row mt-2">
                     <div class="col-12">
@@ -50,6 +63,7 @@
                                                 <th>Kategori</th>
                                                 <th>Stok</th>
                                                 <th>Terjual</th>
+                                                <th>Harga</th>
                                                 <th>action</th>
 
                                             </tr>
@@ -58,13 +72,16 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>
-                                                    <img class="rounded" width="40px" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//96/MTA-61495521/no-brand_undangan-blangko-erba-88199_full01.jpg" alt="">
+                                                    <img class="rounded" width="40px"
+                                                        src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//96/MTA-61495521/no-brand_undangan-blangko-erba-88199_full01.jpg"
+                                                        alt="">
                                                 </td>
                                                 <td>Lintang 31</td>
                                                 <td>Lintang</td>
                                                 <td>Undangan Cetak</td>
                                                 <td>37</td>
                                                 <td>371</td>
+                                                <td>Rp 650</td>
                                                 <td>
                                                     <button class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
                                                     <button class="btn btn-primary"><i class="mdi mdi-pencil"></i></button>
@@ -82,5 +99,4 @@
             </div>
         </div>
     </div>
-
 @endsection

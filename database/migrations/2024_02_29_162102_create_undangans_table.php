@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('uuid');
             $table->string('name');
             $table->string('jenis');
-            $table->string('kategory');   
+            $table->string('kategory');
+            $table->string('tag');
+            $table->string('gambar');
             $table->timestamps();
         });
     }
