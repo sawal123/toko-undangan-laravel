@@ -26,7 +26,7 @@
                                       <label for="email" class="mb-2">Jenis Undangan</label>
                                       <select name="jenis" id="default">
                                           @foreach ($jenis as $jen)
-                                              <option value="{{ $jen->jenis }}">{{ $jen->jenis }}</option>
+                                              <option value="{{ $jen->uuid }}">{{ $jen->jenis }}</option>
                                           @endforeach
 
                                       </select>
@@ -39,8 +39,10 @@
                                   <div class="mb-2 col-lg col-sm-12 ">
                                       <label for="email" class="mb-2">Kategori Undangan</label>
                                       <select class="form-select" name="kategori" id="jenis">
-                                          <option value="1">Undangan Cetak</option>
-                                          <option value="1">Undangan Digital</option>
+                                          @foreach ($kategori as $kat)
+                                          <option value="{{$kat->uuid}}">{{$kat->kategori_undangan}}</option>
+                                          @endforeach
+
                                       </select>
                                       <small>Error Message</small>
                                   </div>

@@ -9,5 +9,10 @@ class JenisUndanganCetak extends Model
 {
     use HasFactory;
 
-    protected $fillabl=['uuid', 'jenis'];
+    protected $fillable = ['uuid', 'jenis'];
+
+    public function undangan()
+    {
+        return $this->belongsTo(Undangan::class);
+    }
 }

@@ -17,15 +17,15 @@ class KategoriUnSeed extends Seeder
         $jenis = KategoriUndangan::insert([
             [
                 'uuid'=> Str::uuid(),
-                'jenis'=> 'Undangan Digital'
+                'kategori_undangan'=> 'Undangan Digital'
             ],
             [
                 'uuid'=> Str::uuid(),
-                'jenis'=> 'Undangan Cetak'
+                'kategori_undangan'=> 'Undangan Cetak'
             ],
             [
                 'uuid'=> Str::uuid(),
-                'jenis'=> 'Undangan Animasi'
+                'kategori_undangan'=> 'Undangan Animasi'
             ],
 
         ]);

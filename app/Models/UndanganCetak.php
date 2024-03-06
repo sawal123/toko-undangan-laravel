@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class UndanganCetak extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['uuid' , 'jenis'];
+
+
 }

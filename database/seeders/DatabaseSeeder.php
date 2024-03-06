@@ -6,6 +6,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\JenisUnSeeder;
+use Database\Seeders\KategoriUnSeed;
 
 
 class DatabaseSeeder extends Seeder
@@ -23,7 +25,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UserSeeder::class,
-            JenisUnSeeder::class
+            JenisUnSeeder::class,
+            KategoriUnSeed::class
         ]);
     }
 }
