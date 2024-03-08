@@ -33,17 +33,6 @@
                     </div>
                 </div>
                 @include('backend.ui-modal.modaladdundangan')
-                {{-- <div id="modalContainer"></div>
-                <script>
-                    function showModal() {
-                        var modalContainer = document.getElementById('modalContainer');
-                        modalContainer.innerHTML = `@include('backend.ui-modal.modaladdundangan')`
-                        var modal = new bootstrap.Modal(document.getElementById('addundangancetak'));
-                        modal.show();
-                    }
-                </script> --}}
-
-
 
                 <div class="row mt-2">
                     <div class="col-12">
@@ -69,24 +58,49 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <img class="rounded" width="40px"
-                                                        src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//96/MTA-61495521/no-brand_undangan-blangko-erba-88199_full01.jpg"
-                                                        alt="">
-                                                </td>
-                                                <td>Lintang 31</td>
-                                                <td>Lintang</td>
-                                                <td>Undangan Cetak</td>
-                                                <td>37</td>
-                                                <td>371</td>
-                                                <td>Rp 650</td>
-                                                <td>
-                                                    <button class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
-                                                    <button class="btn btn-primary"><i class="mdi mdi-pencil"></i></button>
-                                                </td>
-                                            </tr>
+                                            @foreach ($undangan as $index => $item)
+                                                <tr>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>
+                                                        @php
+                                                            $arr = [];
+                                                        @endphp
+                                                        @foreach ($galery as $gal)
+                                                            @if ($gal->undangan_uuid === $item->uuid)
+                                                                @php
+                                                                    $arr[] = $gal->gambar;
+                                                                @endphp
+                                                            @endif
+                                                        @endforeach
+                                                        @if ($arr)
+                                                            <img class="rounded" width="40px"
+                                                                src="{{ asset('storage/undangancetak/' . $arr[0]) }}"
+                                                                alt="">
+                                                        @else
+                                                            <img class="rounded" width="40px"
+                                                                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                                                alt="">
+                                                        @endif
+
+                                                    </td>
+                                                    <td>{{ $item->name }}</td>
+                                                    <td>{{ $item->jenis }}</td>
+                                                    <td>{{ $item->kategori_undangan }}</td>
+                                                    <td>{{ $item->stok }}</td>
+                                                    <td>{{ $item->terjual }}</td>
+                                                    <td>Rp {{ $item->harga }}</td>
+                                                    <td>
+                                                        <a href="{{ url('dashboard/delete/' . $item->uuid) }}"
+                                                            class="btn btn-danger sweetdelete"><i
+                                                                class="mdi mdi-delete"></i></a>
+
+                                                        <button class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#upUndanganCetak"><i
+                                                                class="mdi mdi-pencil"></i></button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            @include('backend.ui-modalUpdate.updateUndangan')
 
                                         </tbody>
                                     </table>

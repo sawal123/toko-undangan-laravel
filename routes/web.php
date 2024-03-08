@@ -19,7 +19,7 @@ use App\Http\Middleware\EnsureTokenIsValid;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::get('/logout', function(){
+Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 });
@@ -32,17 +32,14 @@ Route::get('/detail', function () {
     return view('frontend.detail');
 });
 
-Route::middleware('auth')->group(function(){
-    Route::prefix('dashboard')->group(function(){
+Route::middleware('auth')->group(function () {
+    Route::prefix('dashboard')->group(function () {
         Route::get('/', function () {
             return view('backend.index');
         });
-
         Route::post('/add-undangancetak', [UndanganCetakController::class, 'add']);
-
+        Route::get('/delete/{uid}', [UndanganCetakController::class, 'delete']);
     });
-
+    
     Route::get('/dashboard-undangan', [UndanganCetakController::class, 'index']);
 });
-
-

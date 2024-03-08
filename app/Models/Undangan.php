@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ProductGalerry;
+use App\Models\JenisUndanganCetak;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Undangan extends Model
 {
     use HasFactory;
-    protected $fillable = ['uuid', 'name', 'jenis', 'kategory', 'tag', 'gambar'];
+    protected $fillable = ['uuid', 'name', 'jenis', 'kategory', 'tag'];
 
     public function jenis()
     {
         return $this->hasOne(JenisUndanganCetak::class);
+    }
+    public function product_galerries()
+    {
+        return $this->hasMany(ProductGalerry::class);
     }
 
     public function undanganGet()
@@ -26,7 +33,20 @@ class Undangan extends Model
                 'jenis_undangan_cetaks.jenis',
                 'kategori_undangans.kategori_undangan',
                 'undangans.tag',
-                'undangans.gambar',
+                // 'product_galerries.gambar',
+                'undangan_cetaks.stok',
+                'undangan_cetaks.terjual',
+                'undangan_cetaks.harga',
+                'undangan_cetaks.deskripsi',
+                'undangans.created_at',
+                // DB::raw('GROUP_CONCAT(product_galerries.gambar) as gambar_array')
+            )->groupBy(
+                'undangans.uuid',
+                'undangans.name',
+                'jenis_undangan_cetaks.jenis',
+                'kategori_undangans.kategori_undangan',
+                'undangans.tag',
+                // 'product_galerries.gambar',
                 'undangan_cetaks.stok',
                 'undangan_cetaks.terjual',
                 'undangan_cetaks.harga',
@@ -36,3 +56,4 @@ class Undangan extends Model
             ->get();
     }
 }
+

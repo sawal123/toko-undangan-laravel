@@ -18,7 +18,7 @@
 
                                   <div class="mb-2 col">
                                       <label for="namaundangan" class="mb-2">Nama Undangan</label>
-                                      <input class="form-control" type="text" name="name" id="namaundangan"
+                                      <input class="form-control" type="text" name="name"
                                           placeholder="Enter Name Undangan">
                                       <small>Error Message</small>
                                   </div>
@@ -28,17 +28,14 @@
                                           @foreach ($jenis as $jen)
                                               <option value="{{ $jen->uuid }}">{{ $jen->jenis }}</option>
                                           @endforeach
-
                                       </select>
                                       <small>Error Message</small>
                                   </div>
-
                               </div>
-
                               <div class="row">
                                   <div class="mb-2 col-lg col-sm-12 ">
                                       <label for="email" class="mb-2">Kategori Undangan</label>
-                                      <select class="form-select" name="kategori" id="jenis">
+                                      <select class="form-select" name="kategori" >
                                           @foreach ($kategori as $kat)
                                           <option value="{{$kat->uuid}}">{{$kat->kategori_undangan}}</option>
                                           @endforeach
@@ -48,17 +45,17 @@
                                   </div>
                                   <div class="mb-2 col-lg col-sm-12 ">
                                       <label for="stok" class="mb-2">Stok</label>
-                                      <input class="form-control" type="number" name="stok" id="stok">
+                                      <input class="form-control" type="number" name="stok">
                                       <small>Error Message</small>
                                   </div>
                                   <div class=" mb-2 col-lg col-sm-12 ">
                                       <label for="terjual" class="mb-2">terjual</label>
-                                      <input class="form-control" type="number" name="terjual" id="terjual">
+                                      <input class="form-control" type="number" name="terjual" >
                                       <small>Error Message</small>
                                   </div>
                                   <div class="mb-2 col-lg col-sm-12 ">
                                       <label for="harga" class="mb-2">Harga</label>
-                                      <input class="form-control" type="number" name="harga" id="harga">
+                                      <input class="form-control" type="number" name="harga" >
                                       <small>Error Message</small>
                                   </div>
                               </div>

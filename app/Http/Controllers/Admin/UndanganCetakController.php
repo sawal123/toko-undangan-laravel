@@ -9,32 +9,43 @@ use Illuminate\Http\Request;
 use App\Models\KategoriUndangan;
 use App\Models\JenisUndanganCetak;
 use App\Http\Controllers\Controller;
+use App\Models\ProductGalerry;
 use App\Models\UndanganCetak;
 
 class UndanganCetakController extends Controller
 {
     public function index()
     {
+        // error_reporting(0);
         $jenis = JenisUndanganCetak::all();
         $kategori = KategoriUndangan::all();
-
-        $unda =  Undangan::with('jenis')->get();
         $undanganModel = new Undangan();
-        $u = $undanganModel->undanganGet();
-
-        dd($unda);
+        $productGalery = ProductGalerry::all();
 
         return view('backend.undangancetak', [
             'jenis' => $jenis,
-            'kategori' => $kategori
+            'kategori' => $kategori,
+            'undangan' => $undanganModel->undanganGet(),
+            'galery'=> $productGalery
         ]);
+    }
+    public function delete($uid){
+
+        $undangan = Undangan::where('uuid', $uid)->first();
+        $galery = ProductGalerry::where('undangan_uuid', $undangan->uuid)->get();
+        if($galery){
+            foreach($galery as $gal):
+                $gal->delete();
+            endforeach;  
+        }
+        $undangan->delete();
+        return redirect()->back()->with('success', 'Data Berhasil di Hapus!');
+
     }
     public function add(Request $request): RedirectResponse
     {
-        // $name = $request->file('gambar');
-        // dd($name);
+
         $uid = Str::uuid();
-        // dd(base_path());
 
         $request->validate([
             'name' => 'required|string',
@@ -51,9 +62,13 @@ class UndanganCetakController extends Controller
             $arr = [];
             $i = 0;
             foreach ($images as $item) :
-                $imageName = $i++.'-'.str::random(4).$item->getClientOriginalName();
-                $item->storeAs('undangancetak',$imageName, 'public');
-                $arr[] = $imageName;
+                $galery = new ProductGalerry();
+                $imageName = $i++ . '-' . str::random(4) . $item->getClientOriginalName();
+                $item->storeAs('undangancetak', $imageName, 'public');
+                // $arr[] = $imageName;
+                $galery->gambar = $imageName;
+                $galery->undangan_uuid = $uid;
+                $galery->save();
             endforeach;
             $image = implode(",", $arr);
         else :
@@ -68,7 +83,7 @@ class UndanganCetakController extends Controller
         $undangan->jenis = $request->jenis;
         $undangan->kategory = $request->kategori;
         $undangan->tag = 'null';
-        $undangan->gambar = $image;
+        // $undangan->gambar = $image;
 
         $unCetak->uid_undangan = $uid;
         $unCetak->stok = $request->stok;
@@ -80,9 +95,5 @@ class UndanganCetakController extends Controller
         $unCetak->save();
 
         return redirect('dashboard-undangan');
-
-
-
-
     }
 }

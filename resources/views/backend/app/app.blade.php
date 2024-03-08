@@ -13,11 +13,12 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
-    <link href="{{asset('admin/assets/libs/mobius1-selectr/selectr.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/libs/mobius1-selectr/selectr.min.css') }}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="{{ asset('admin/assets/libs/datatables.net/css/dataTables.bootstrap5.css') }}">
 
 
+    <link href="{{ asset('admin/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
     <!-- App css -->
     <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -46,21 +47,59 @@
     {{-- <script src="{{ asset('admin/assets/libs/simple-datatables/umd/simple-datatables.js') }}"></script>
     <script src="{{ asset('admin/assets/js/pages/datatable.init.js') }}"></script> --}}
     <script src="{{ asset('admin/assets/libs/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script>
-    <script src="{{asset('admin/assets/libs/datatables.net/js/dataTables.js')}}"></script>
-    <script src="{{asset('admin/assets/libs/datatables.net/js/dataTables.bootstrap5.js')}}"></script>
+    <script src="{{ asset('admin/assets/libs/datatables.net/js/dataTables.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/datatables.net/js/dataTables.bootstrap5.js') }}"></script>
 
     <!-- App js -->
 
-    <script src="{{asset('admin/assets/libs/mobius1-selectr/selectr.min.js')}}"></script>
-    <script src="{{asset('admin/assets/js/pages/forms-advanced.js')}}"></script>
+    <script src="{{ asset('admin/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/sweet-alert.init.js') }}"></script>
 
-    <script src="{{asset('admin/assets/libs/tinymce/tinymce.min.js')}}"></script>
-    <script src="{{asset('admin/assets/js/pages/form-editor.init.js')}}"></script>
+    <script src="{{ asset('admin/assets/libs/mobius1-selectr/selectr.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/forms-advanced.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/libs/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/form-editor.init.js') }}"></script>
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
 
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Horeee!!!',
+                text: '{{ session('success') }}',
+                timer: 3000,
+                showConfirmButton: false
+            })
+        </script>
+    @endif
 
+    <script>
+        document.querySelectorAll('.sweetdelete').forEach(function(element) {
+            element.addEventListener('click', function(event) {
+                console.log('ok');
+                var getLink = event.currentTarget.getAttribute('href');
+                event.preventDefault(); // Menghentikan default behavior dari link
+
+                Swal.fire({
+                    title: "Yakin Hapus Data?",
+                    text: "Data akan dihapus secara permanen!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    // Jika diklik ya maka arahkan ke getLink
+                    if (result.isConfirmed) {
+                        window.location.href = getLink;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 <!--end body-->
 
