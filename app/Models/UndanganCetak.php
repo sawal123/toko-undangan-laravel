@@ -9,7 +9,12 @@ class UndanganCetak extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['uuid' , 'jenis'];
+    protected $fillable = ['uid_undangan' , 'stok', 'terjual', 'harga', 'deskripsi'];
+
+    public function undangan()
+    {
+        return $this->belongsTo(Undangan::class, 'uid_undangan', 'uuid');
+    }
 
 
 }

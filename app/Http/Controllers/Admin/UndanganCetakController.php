@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\RedirectResponse;
 use App\Models\Undangan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\UndanganCetak;
+use App\Models\ProductGalerry;
 use App\Models\KategoriUndangan;
 use App\Models\JenisUndanganCetak;
 use App\Http\Controllers\Controller;
-use App\Models\ProductGalerry;
-use App\Models\UndanganCetak;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
+use File;
+
 
 class UndanganCetakController extends Controller
 {
@@ -19,32 +22,50 @@ class UndanganCetakController extends Controller
         // error_reporting(0);
         $jenis = JenisUndanganCetak::all();
         $kategori = KategoriUndangan::all();
+        // dd($kategori);
         $undanganModel = new Undangan();
         $productGalery = ProductGalerry::all();
+
 
         return view('backend.undangancetak', [
             'jenis' => $jenis,
             'kategori' => $kategori,
             'undangan' => $undanganModel->undanganGet(),
-            'galery'=> $productGalery
+            'galery' => $productGalery
         ]);
     }
-    public function delete($uid){
-
+    public function delete($uid)
+    {
         $undangan = Undangan::where('uuid', $uid)->first();
+        $undanganCetak = UndanganCetak::where('uid_undangan', $uid)->first();
         $galery = ProductGalerry::where('undangan_uuid', $undangan->uuid)->get();
-        if($galery){
-            foreach($galery as $gal):
+
+        if ($galery) {
+            foreach ($galery as $gal) :
+                $imagePath = public_path() . '/storage/undangancetak/' . $gal->gambar;
+                if (file_exists($imagePath) === true) {
+                    unlink($imagePath);
+                }
                 $gal->delete();
-            endforeach;  
+            endforeach;
         }
         $undangan->delete();
+        $undanganCetak->delete();
         return redirect()->back()->with('success', 'Data Berhasil di Hapus!');
-
+    }
+    public function deleteImage(Request $request)
+    {
+        // dd($request->uidImage);
+        $img = ProductGalerry::where('id', $request->uidImage)->first();
+        $imagePath = public_path() . '/storage/undangancetak/' . $img->gambar;
+        if (file_exists($imagePath) === true) {
+            unlink($imagePath);
+        }
+        $img->delete();
+        return redirect()->back()->with('message', 'Gambar Berhasil di Hapus.');
     }
     public function add(Request $request): RedirectResponse
     {
-
         $uid = Str::uuid();
 
         $request->validate([
@@ -95,5 +116,39 @@ class UndanganCetakController extends Controller
         $unCetak->save();
 
         return redirect('dashboard-undangan');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'uuid' => 'required|string',
+            'name' => 'required|string',
+            'jenis' => 'required|string',
+            'kategory' => 'required|string',
+            'stok' => 'required|numeric',
+            'harga' => 'required|numeric',
+            'terjual' => 'required|numeric',
+            'deskripsi' => 'required',
+        ]);
+
+        $jenis = JenisUndanganCetak::where('jenis', $request->jenis)->first();
+        $kategory = KategoriUndangan::where('kategory', $request->kategory)->first();
+        $unJen = Undangan::where('uuid', $request->uuid)->first();
+
+        $undangan = UndanganCetak::join('undangans', 'undangans.uuid', '=', 'undangan_cetaks.uid_undangan')
+            ->join('kategori_undangans', 'kategori_undangans.uuid', '=', 'undangans.kategory')
+            ->join('jenis_undangan_cetaks', 'jenis_undangan_cetaks.uuid', '=', 'undangans.jenis')
+            ->where('undangan_cetaks.uid_undangan', $request->uuid)->first();
+
+
+
+
+        $unJen->update([
+            'name' => $request->name,
+            'jenis' => $jenis->uuid,
+            'kategory'=>$kategory->uuid
+        ]);
+        // $undangan->undangan()->update(['name' => $request->name]);
+        return redirect()->back();
     }
 }

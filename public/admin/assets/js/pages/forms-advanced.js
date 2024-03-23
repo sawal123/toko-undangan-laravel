@@ -1,4 +1,5 @@
 new Selectr("#default"),
+new Selectr("#defaultsatu"),
     new Selectr("#multiSelect", { multiple: !0 }),
     new Selectr("#taggableSelect", { taggable: !0, tagSeperators: [",", "|"] });
 var hueb = new Huebee(".color-input", { setBGColor: !0, saturations: 3 }),

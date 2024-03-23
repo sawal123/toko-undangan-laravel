@@ -38,8 +38,12 @@ Route::middleware('auth')->group(function () {
             return view('backend.index');
         });
         Route::post('/add-undangancetak', [UndanganCetakController::class, 'add']);
+        Route::post('/up-undangancetak', [UndanganCetakController::class, 'update']);
         Route::get('/delete/{uid}', [UndanganCetakController::class, 'delete']);
+        Route::post('/delImg', [UndanganCetakController::class,'deleteImage'])->name('imageDelete');
     });
     
     Route::get('/dashboard-undangan', [UndanganCetakController::class, 'index']);
+
+
 });

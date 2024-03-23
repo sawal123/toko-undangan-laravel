@@ -29,13 +29,17 @@ class AuthController extends Controller
         ]);
         $result = User::where('email', $request->email)->first();
         if (!$result) {
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
+            return redirect()->back()->withErrors([
+                'message' => 'Email Tidak Terdaftar!',
             ])->onlyInput('email');
         } else {
             if (Auth::attempt($validate)) {
                 $request->session()->regenerate();
                 return redirect()->intended('dashboard');
+            }else{
+                return redirect()->back()->withErrors([
+                    'message' => 'Password Salah!',
+                ]);
             }
         }
     }

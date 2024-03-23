@@ -20,25 +20,30 @@
         <div class="flex justify-center items-center sm:p-32  lg:p-52">
             <div class="grid lg:grid-cols-2 sm:grid-cols-1 shadow-lg p-16 rounded-xl">
                 <div class="gambar">
-                    <img src="https://img.freepik.com/free-vector/web-development-concept-with-programmer-ar_107791-17049.jpg?t=st=1709133848~exp=1709137448~hmac=f08d4523cc2728bcdd9c5dafc6c114b7965eaafe76605f6fdb3460b222aebeb7&w=1380" alt="">
+                    <img src="https://img.freepik.com/free-vector/web-development-concept-with-programmer-ar_107791-17049.jpg?t=st=1709133848~exp=1709137448~hmac=f08d4523cc2728bcdd9c5dafc6c114b7965eaafe76605f6fdb3460b222aebeb7&w=1380"
+                        alt="">
                 </div>
                 <div class="login">
                     <div class="my-2">
                         <h2 class="font-bold">Login to ERA DIGITAL</h2>
-                        <span>Akses Super Admin Anda!</span>
-                    </div>
-                    <form action="{{url('authLogin')}}" method="POST" class="grid grid-rows-2 gap-4 mt-4 ">
-                        @csrf
-                        <input type="email" name="email" class="px-4 py-2 rounded-md ring-1" placeholder="Typing Email...">
-                        @error('email')
-                            <span>Email Salah</span>
+                        <span>Akses Super Admin Anda!</span> @error('message')
+                            <span class="font-bold text-red-700">{{ $message }}</span>
                         @enderror
-                        <input type="password" name="password" class="px-4 py-2 rounded-md ring-1" placeholder="Typing Password...">
-                        <button type="submit"  class=" hover:bg-blue-600 transition ease-in-out hover:ring-2 w-full bg-blue-500 text-white rounded-md py-2">Login</button>
+                    </div>
+                    <form action="{{ url('authLogin') }}" method="POST" class="grid grid-rows-2 gap-4 mt-4 ">
+                        @csrf
+                        <input type="email" name="email" class="px-4 py-2 rounded-md ring-1"
+                            placeholder="Typing Email...">
+
+                        <input type="password" name="password" class="px-4 py-2 rounded-md ring-1"
+                            placeholder="Typing Password...">
+                        <button type="submit"
+                            class=" hover:bg-blue-600 transition ease-in-out hover:ring-2 w-full bg-blue-500 text-white rounded-md py-2">Login</button>
                     </form>
                     <hr class="my-5 pe-8">
                     <p class="text-center mb-3">Or Login With</p>
-                    <button class="hover:bg-blue-600 transition ease-in-out hover:ring-2 w-full bg-blue-500 text-white rounded-md py-2">
+                    <button
+                        class="hover:bg-blue-600 transition ease-in-out hover:ring-2 w-full bg-blue-500 text-white rounded-md py-2">
                         <i class="fab fa-google" style="color: #ffffff;"></i> Google
                     </button>
 

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class KategoriUndangan extends Model
 {
     use HasFactory;
-    protected $fillable = ['uuid', 'kategori'];
+    protected $fillable = ['uuid','kategory'];
 }

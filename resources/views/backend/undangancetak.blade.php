@@ -25,6 +25,13 @@
 
 
                 <div class="row">
+                    <div class="col">
+                        @if (session('message'))
+                            <div class="alert alert-primary" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                    </div>
                     <div class="col d-flex justify-content-end">
                         <div class="mt-3">
                             <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#addundangancetak"
@@ -58,10 +65,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                             @foreach ($undangan as $index => $item)
+                                            
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>
+                                                    <td style="overflow-x: scroll" class="d-flex justify-content-evenly">
                                                         @php
                                                             $arr = [];
                                                         @endphp
@@ -70,22 +79,53 @@
                                                                 @php
                                                                     $arr[] = $gal->gambar;
                                                                 @endphp
+                                                                <style>
+                                                                    .image-container {
+                                                                        position: relative;
+                                                                        display: inline-block;
+                                                                    }
+
+                                                                    .close-button {
+                                                                        position: absolute;
+                                                                        top: 5px;
+                                                                        right: 5px;
+                                                                        background-color: red;
+                                                                        border: none;
+                                                                        border-radius: 50%;
+                                                                        width: 30px;
+                                                                        height: 30px;
+                                                                        color: rgb(255, 255, 255);
+                                                                        font-size: 20px;
+                                                                        cursor: pointer;
+                                                                        padding: 0;
+                                                                        /* Hapus padding */
+                                                                        z-index: 1;
+                                                                        /* Pastikan tombol silang di atas gambar */
+                                                                        transform: translate(50%, -50%);
+                                                                        /* Geser tombol silang ke sudut yang tepat */
+                                                                    }
+                                                                </style>
+                                                                <div class="image-container">
+                                                                    <img class="rounded ms-2" width="40px"
+                                                                        src="{{ asset('storage/undangancetak/' . $gal->gambar) }}"
+                                                                        alt="">
+                                                                    <form action="{{ url('dashboard/delImg') }}"
+                                                                        method="post" enctype="multipart/form-data" class="delete-form">
+                                                                        @csrf
+                                                                        <input type="hidden" name="uidImage"
+                                                                            value="{{ $gal->id }}">
+                                                                            <button type="submit" class="close-button " id="sweetdelete" data-message="Yakin Hapus Gambar?"
+                                                                            data-confirm-text="Yes, delete it!">&times;</button>
+                                                                    </form>
+                                                                </div>
                                                             @endif
                                                         @endforeach
-                                                        @if ($arr)
-                                                            <img class="rounded" width="40px"
-                                                                src="{{ asset('storage/undangancetak/' . $arr[0]) }}"
-                                                                alt="">
-                                                        @else
-                                                            <img class="rounded" width="40px"
-                                                                src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                                                alt="">
-                                                        @endif
 
+                                                     
                                                     </td>
                                                     <td>{{ $item->name }}</td>
                                                     <td>{{ $item->jenis }}</td>
-                                                    <td>{{ $item->kategori_undangan }}</td>
+                                                    <td>{{ $item->kategory }}</td>
                                                     <td>{{ $item->stok }}</td>
                                                     <td>{{ $item->terjual }}</td>
                                                     <td>Rp {{ $item->harga }}</td>
@@ -95,12 +135,20 @@
                                                                 class="mdi mdi-delete"></i></a>
 
                                                         <button class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-name="{{ $item->name }}"
+                                                            data-jenis="{{ $item->jenis }}"
+                                                            data-kategori="{{ $item->kategory }}"
+                                                            data-stok='{{ $item->stok }}'
+                                                            data-terjual="{{ $item->terjual }}"
+                                                            data-deskripsi="{{ $item->deskripsi }}"
+                                                            data-harga="{{ $item->harga }}" data-uuid={{ $item->uuid }}
                                                             data-bs-target="#upUndanganCetak"><i
                                                                 class="mdi mdi-pencil"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                             @include('backend.ui-modalUpdate.updateUndangan')
+                                           
 
                                         </tbody>
                                     </table>

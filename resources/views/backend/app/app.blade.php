@@ -10,7 +10,8 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
+    @vite('resources/css/app.css')
+  
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
     <link href="{{ asset('admin/assets/libs/mobius1-selectr/selectr.min.css') }}" rel="stylesheet" type="text/css" />
@@ -63,6 +64,11 @@
 
     <script src="{{ asset('admin/assets/js/app.js') }}"></script>
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+    <script src="{{ asset('admin/js/showModal.js') }}"></script>
+    <script src="{{ asset('admin/js/sweetAlert.js') }}"></script>
+
+
+   
 
     @if (session('success'))
         <script>
@@ -76,30 +82,7 @@
         </script>
     @endif
 
-    <script>
-        document.querySelectorAll('.sweetdelete').forEach(function(element) {
-            element.addEventListener('click', function(event) {
-                console.log('ok');
-                var getLink = event.currentTarget.getAttribute('href');
-                event.preventDefault(); // Menghentikan default behavior dari link
-
-                Swal.fire({
-                    title: "Yakin Hapus Data?",
-                    text: "Data akan dihapus secara permanen!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    // Jika diklik ya maka arahkan ke getLink
-                    if (result.isConfirmed) {
-                        window.location.href = getLink;
-                    }
-                });
-            });
-        });
-    </script>
+   
 </body>
 <!--end body-->
 

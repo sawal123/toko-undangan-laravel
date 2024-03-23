@@ -13,10 +13,10 @@ class Undangan extends Model
     use HasFactory;
     protected $fillable = ['uuid', 'name', 'jenis', 'kategory', 'tag'];
 
-    public function jenis()
-    {
-        return $this->hasOne(JenisUndanganCetak::class);
-    }
+    // public function jenis()
+    // {
+    //     return $this->belongsTo(JenisUndanganCetak::class, 'jenis', 'uuid');
+    // }
     public function product_galerries()
     {
         return $this->hasMany(ProductGalerry::class);
@@ -31,7 +31,7 @@ class Undangan extends Model
                 'undangans.uuid',
                 'undangans.name',
                 'jenis_undangan_cetaks.jenis',
-                'kategori_undangans.kategori_undangan',
+                'kategori_undangans.kategory',
                 'undangans.tag',
                 // 'product_galerries.gambar',
                 'undangan_cetaks.stok',
@@ -44,7 +44,7 @@ class Undangan extends Model
                 'undangans.uuid',
                 'undangans.name',
                 'jenis_undangan_cetaks.jenis',
-                'kategori_undangans.kategori_undangan',
+                'kategori_undangans.kategory',
                 'undangans.tag',
                 // 'product_galerries.gambar',
                 'undangan_cetaks.stok',
