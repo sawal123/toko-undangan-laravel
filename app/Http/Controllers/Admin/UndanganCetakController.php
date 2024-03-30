@@ -115,11 +115,13 @@ class UndanganCetakController extends Controller
         $undangan->save();
         $unCetak->save();
 
-        return redirect('dashboard-undangan');
+        return redirect('dashboard-undangan')->with('success', 'Data Berhasil di Tambah');
     }
 
     public function update(Request $request)
     {
+
+        // $uid = Str::uuid();
         $request->validate([
             'uuid' => 'required|string',
             'name' => 'required|string',
@@ -134,14 +136,33 @@ class UndanganCetakController extends Controller
         $jenis = JenisUndanganCetak::where('jenis', $request->jenis)->first();
         $kategory = KategoriUndangan::where('kategory', $request->kategory)->first();
         $unJen = Undangan::where('uuid', $request->uuid)->first();
+        $undangan = UndanganCetak::where('undangan_cetaks.uid_undangan', $request->uuid)->first();
+        
 
-        $undangan = UndanganCetak::join('undangans', 'undangans.uuid', '=', 'undangan_cetaks.uid_undangan')
-            ->join('kategori_undangans', 'kategori_undangans.uuid', '=', 'undangans.kategory')
-            ->join('jenis_undangan_cetaks', 'jenis_undangan_cetaks.uuid', '=', 'undangans.jenis')
-            ->where('undangan_cetaks.uid_undangan', $request->uuid)->first();
+        $images = $request->file('gambar');
+        if ($request->hasFile('gambar')) :
+            $arr = [];
+            $i = 0;
+            foreach ($images as $item) :
+                $galery = new ProductGalerry();
+                $imageName = $i++ . '-' . str::random(4) . $item->getClientOriginalName();
+                $item->storeAs('undangancetak', $imageName, 'public');
+                // $arr[] = $imageName;
+                $galery->gambar = $imageName;
+                $galery->undangan_uuid = $request->uuid;
+                $galery->save();
+            endforeach;
+            $image = implode(",", $arr);
+        else :
+            $image = '';
+        endif;
 
-
-
+        $undangan->update([
+            'stok'=> $request->stok,
+            'terjual'=> $request->terjual,
+            'harga'=> $request->harga,
+            'deskripsi'=> $request->deskripsi
+        ]);
 
         $unJen->update([
             'name' => $request->name,
@@ -149,6 +170,6 @@ class UndanganCetakController extends Controller
             'kategory'=>$kategory->uuid
         ]);
         // $undangan->undangan()->update(['name' => $request->name]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Data Berhasil di Update');
     }
 }

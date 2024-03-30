@@ -16,7 +16,7 @@
                                     <li class="breadcrumb-item active">Datatables</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Datatables</h4>
+                            <h4 class="page-title">Undangan Cetak</h4>
                         </div>
                         <!--end page-title-box-->
                     </div>
@@ -45,15 +45,15 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Export Table </h4>
+                                <h4 class="card-title">Undangan Cetak</h4>
                             </div><!--end card-header-->
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table" id="myTable">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th>No</th>
-                                                <th>Gambar</th>
+                                                <th style="width: 10%;">No</th>
+                                                <th style="width: 20%">Gambar</th>
                                                 <th>Nama</th>
                                                 <th>Jenis</th>
                                                 <th>Kategori</th>
@@ -67,10 +67,9 @@
                                         <tbody>
                                             
                                             @foreach ($undangan as $index => $item)
-                                            
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td style="overflow-x: scroll" class="d-flex justify-content-evenly">
+                                                    <td style="overflow-x: scroll;" class="d-flex justify-content-evenly">
                                                         @php
                                                             $arr = [];
                                                         @endphp
@@ -83,8 +82,8 @@
                                                                     .image-container {
                                                                         position: relative;
                                                                         display: inline-block;
+                                                                        /* overflow-x: scroll */
                                                                     }
-
                                                                     .close-button {
                                                                         position: absolute;
                                                                         top: 5px;
@@ -133,7 +132,6 @@
                                                         <a href="{{ url('dashboard/delete/' . $item->uuid) }}"
                                                             class="btn btn-danger sweetdelete"><i
                                                                 class="mdi mdi-delete"></i></a>
-
                                                         <button class="btn btn-primary" data-bs-toggle="modal"
                                                             data-name="{{ $item->name }}"
                                                             data-jenis="{{ $item->jenis }}"

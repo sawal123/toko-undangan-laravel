@@ -1,3 +1,7 @@
+
+
+
+
 document.querySelector("#upUndanganCetak").addEventListener("show.bs.modal", function(event) {
     var tombol = event.relatedTarget.dataset;
     var uuid = tombol.uuid;
@@ -20,3 +24,5 @@ document.querySelector("#upUndanganCetak").addEventListener("show.bs.modal", fun
         document.querySelector("#jenis").value = jenis;
     }, 200);
 });
+
+
