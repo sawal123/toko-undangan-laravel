@@ -50,8 +50,11 @@
         </div>
 
     </section>
+    <section class="class="my-5 lg:px-8"">
+        
+    </section>
 
-    <section class="my-10">
+    <section class="my-10 px-10">
         <div class="grid gap-4 lg:grid-cols-6 grid-cols-2 xl:grid-cols-8">
             <div class=" rounded-lg ring-1 max-w-40 mx-auto">
                 <a href="">

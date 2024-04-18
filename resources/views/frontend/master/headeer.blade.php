@@ -18,13 +18,13 @@
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-8 *:px-2 ">
-            <a href=""
-                class="transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Home</a>
+            <a href="{{url('/')}}"
+                class=" transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Home</a>
             <a href="{{ url('/undangan-cetak') }}"
-                class="transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
+                class=" {{request()->is('undangan-cetak') ? 'bg-slate-200 ring-2' : ''}} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
                 Cetak</a>
             <a href=""
-                class="transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
+                class="{{request()->is('undangan-digital') ? 'bg-slate-200 ring-2' : ''}} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
                 Digital</a>
             <a href=""
                 class="transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Promo</a>

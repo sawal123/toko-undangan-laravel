@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jenis_undangan_cetaks', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid');
+
+            $table->uuid('uuid');
             $table->string('jenis');
             $table->timestamps();
         });

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CostumerController;
+use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\UndanganCetakController;
 use Illuminate\Support\Facades\Auth;
@@ -51,11 +52,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/costumer/detail/{uid}',[CostumerController::class, 'detail']);
 
         Route::get('transaksi/create', [TransaksiController::class, 'create']);
+
+        Route::post('/add-kategori', [KategoriController::class, 'create'])->name('add.kategori');
     });
     
     Route::get('/dashboard/undangan', [UndanganCetakController::class, 'index']);
     Route::get('/dashboard/costumer', [CostumerController::class, 'costumer']);
     Route::get('/dashboard/transaksi', [TransaksiController::class, 'index']);
+    Route::get('/dashboard/kategori', [KategoriController::class, 'index']);
 
 
 });

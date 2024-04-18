@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kategori_undangans', function (Blueprint $table) {
             // $table->id();
-            $table->uuid('uuid')->primary();
+            $table->uuid('uuid');
             $table->string('kategory');
             $table->timestamps();
         });

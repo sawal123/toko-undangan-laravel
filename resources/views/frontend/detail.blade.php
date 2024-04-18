@@ -32,9 +32,9 @@
   </section>
 
   
-<hr class="lg:my-32 sm:my-5">
-  <section class="">
-      <div class="px-5 my-5">
+<hr class="lg:my-10 sm:my-5">
+  <section class="px-10 mb-10">
+      <div class=" my-5">
           <h2>Produk Serupa</h2>
       </div>
     <div class="grid gap-4 lg:grid-cols-6 grid-cols-2 xl:grid-cols-8">

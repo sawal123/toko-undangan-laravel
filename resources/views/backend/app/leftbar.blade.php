@@ -111,6 +111,11 @@
                          </li>
                      @endif
 
+                     <li class="nav-item">
+                        <a class="nav-link {{ Request::is(['dashboard/kategori', 'dashboard/kategori/create']) ? 'active' : '' }}"
+                            href="{{ url('dashboard/kategori') }}">Kategori & Jenis</a>
+                    </li><!--end nav-item-->
+
 
                  </ul><!--end nav-->
              </div><!-- end Dashboards -->
