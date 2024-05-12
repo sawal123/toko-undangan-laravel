@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Undangan extends Model
 {
     use HasFactory;
-    protected $fillable = ['uuid', 'name', 'jenis', 'kategory', 'tag'];
+    protected $fillable = ['uuid', 'name', 'jenis', 'kategory', 'tag', 'slug'];
 
     // public function jenis()
     // {
@@ -33,6 +33,7 @@ class Undangan extends Model
                 'jenis_undangan_cetaks.jenis',
                 'kategori_undangans.kategory',
                 'undangans.tag',
+                'undangans.slug',
                 // 'product_galerries.gambar',
                 'undangan_cetaks.stok',
                 'undangan_cetaks.terjual',
@@ -46,6 +47,7 @@ class Undangan extends Model
                 'jenis_undangan_cetaks.jenis',
                 'kategori_undangans.kategory',
                 'undangans.tag',
+                'undangans.slug',
                 // 'product_galerries.gambar',
                 'undangan_cetaks.stok',
                 'undangan_cetaks.terjual',

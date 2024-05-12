@@ -51,119 +51,26 @@
 
     </section>
     <section class="class="my-5 lg:px-8"">
-        
+
     </section>
 
     <section class="my-10 px-10">
         <div class="grid gap-4 lg:grid-cols-6 grid-cols-2 xl:grid-cols-8">
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
+            @foreach ($undangan as $item)
+            <div class=" rounded-lg ring-1 max-w-40 mx-auto hover:shadow-lg">
+                <a href="{{url('product/detail/'.$item->slug)}}">
+                    <img class="rounded-lg" src="{{asset('./storage/undangancetak/'.$item->gambar)}}" alt="">
                     <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
+                        <p class=" text-slate-700">{{$item->name}}</p>
                         <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
+                            <p class="text-slate-700 text-sm">{{$item->harga}}</p>
+                            <span class="text-slate-500 text-sm">Stok: {{$item->stok}}</span>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="{{ url('/detail') }}">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class=" rounded-lg ring-1 max-w-40 mx-auto">
-                <a href="">
-                    <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
-                    <div class="p-2">
-                        <p class="font-bold text-slate-700">MQ 13</p>
-                        <div class="flex justify-between">
-                            <p class="text-slate-700">Rp1.000</p>
-                            <span class="text-slate-500">Stok: 12</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            @endforeach
+
         </div>
     </section>
 @endsection

@@ -31,7 +31,7 @@
     </div>
   </section>
 
-  
+
 <hr class="lg:my-10 sm:my-5">
   <section class="px-10 mb-10">
       <div class=" my-5">

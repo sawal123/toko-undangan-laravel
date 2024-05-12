@@ -95,15 +95,22 @@ class UndanganCetakController extends Controller
         else :
             $image = '';
         endif;
+        $slug = Str::slug($request->name);
         // dd($image);
         $undangan = new Undangan;
         $unCetak = new UndanganCetak;
+
+        if (Undangan::where('slug', $slug)->exists()) {
+            // Jika sudah ada, tambahkan angka unik di belakang slug, atau gunakan pendekatan lain
+            $slug = $slug.'-'.Str::random(4); // Contoh penambahan angka unik
+        }
 
         $undangan->uuid = $uid;
         $undangan->name = $request->name;
         $undangan->jenis = $request->jenis;
         $undangan->kategory = $request->kategori;
         $undangan->tag = 'null';
+        $undangan->slug = $slug;
         // $undangan->gambar = $image;
 
         $unCetak->uid_undangan = $uid;
@@ -115,7 +122,7 @@ class UndanganCetakController extends Controller
         $undangan->save();
         $unCetak->save();
 
-        return redirect('dashboard-undangan')->with('success', 'Data Berhasil di Tambah');
+        return redirect('dashboard/undangan')->with('success', 'Data Berhasil di Tambah');
     }
 
     public function update(Request $request)
@@ -137,7 +144,7 @@ class UndanganCetakController extends Controller
         $kategory = KategoriUndangan::where('kategory', $request->kategory)->first();
         $unJen = Undangan::where('uuid', $request->uuid)->first();
         $undangan = UndanganCetak::where('undangan_cetaks.uid_undangan', $request->uuid)->first();
-        
+
 
         $images = $request->file('gambar');
         if ($request->hasFile('gambar')) :

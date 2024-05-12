@@ -28,12 +28,11 @@ Route::get('/logout', function () {
 });
 Route::post('/authLogin', [AuthController::class, 'AuthLogin']);
 
-Route::get('/undangan-cetak', function () {
-    return view('frontend.undangan');
-});
-Route::get('/detail', function () {
-    return view('frontend.detail');
-});
+// Route::get('/undangan-cetak', function () {
+//     return view('frontend.undangan');
+// });
+Route::get('/undangan-cetak/{product?}', [IndexController::class, 'undanganCetak']);
+Route::get('/product/detail/{product?}',[IndexController::class, 'productDetail'] );
 
 Route::middleware('auth')->group(function () {
     Route::prefix('dashboard')->group(function () {
@@ -55,7 +54,7 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/add-kategori', [KategoriController::class, 'create'])->name('add.kategori');
     });
-    
+
     Route::get('/dashboard/undangan', [UndanganCetakController::class, 'index']);
     Route::get('/dashboard/costumer', [CostumerController::class, 'costumer']);
     Route::get('/dashboard/transaksi', [TransaksiController::class, 'index']);

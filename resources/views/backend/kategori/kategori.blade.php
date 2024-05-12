@@ -54,16 +54,43 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th style="width: 10%;">No</th>
-                                            <th>Pelanggan</th>
-                                            <th>Invoice</th>
-                                            <th>Jumlah</th>
-                                            <th>Tanggal</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>action</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @php
+                                            $i = 1;
+                                        @endphp
+                                        @foreach ($kategory as $key => $kat)
+                                            <tr>
+                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $kat->kategory }}</td>
+                                                <td>KATEGORI</td>
+                                                <td><a href="{{ url('dashboard/delete/' . $kat->uuid) }}"
+                                                        class="btn btn-danger sweetdelete"><i
+                                                            class="mdi mdi-delete"></i></a>
+                                                    <button class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#upUndanganCetak"><i
+                                                            class="mdi mdi-pencil"></i></button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        @foreach ($jenis as $key => $jen)
+                                            <tr>
+                                                <td>{{ $i++ }}</td>
+                                                <td>{{ $jen->jenis }}</td>
+                                                <td>JENIS</td>
+                                                <td><a href="{{ url('dashboard/delete/' . $jen->uuid) }}"
+                                                    class="btn btn-danger sweetdelete"><i
+                                                        class="mdi mdi-delete"></i></a>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#upUndanganCetak"><i
+                                                        class="mdi mdi-pencil"></i></button></td>
+                                            </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>

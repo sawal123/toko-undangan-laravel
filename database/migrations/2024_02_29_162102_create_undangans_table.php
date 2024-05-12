@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('jenis');
             $table->string('kategory');
             $table->string('tag');
+            $table->text('slug');
             $table->timestamps();
         });
     }

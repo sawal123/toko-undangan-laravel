@@ -10,16 +10,22 @@ use App\Http\Controllers\Controller;
 
 class KategoriController extends Controller
 {
-    
+
     public function index(){
-        
-        return view('backend.kategori.kategori');
+        $kategori = KategoriUndangan::select('uuid', 'kategory')->orderBy('kategory', 'asc')->get();
+        $jenis = JenisUndanganCetak::select('uuid', 'jenis')->orderBy('jenis', 'asc')->get();
+
+        return view('backend.kategori.kategori',[
+            'kategory'=>$kategori,
+            'jenis'=> $jenis
+
+        ]);
     }
 
     public function create(Request $request){
         $request->validate([
             'name'=> 'required|string',
-            'type'=> 'required|string' 
+            'type'=> 'required|string'
         ]);
         if($request->type === 'Kategori'){
             $kategori =   new KategoriUndangan();
@@ -34,7 +40,7 @@ class KategoriController extends Controller
             $jenis->save();
             return redirect()->back()->with('success', 'Jenis berhasil disimpan');
         }
-        
+
     }
 }
 
