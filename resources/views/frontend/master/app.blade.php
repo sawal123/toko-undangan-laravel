@@ -20,13 +20,9 @@
 <body>
   <div class="bg-white">
     @include('frontend.master.headeer')
-
-
     @yield('content')
-
     @include('frontend.master.footer')
   </div>
-
   <div
     class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
     aria-hidden="true">
@@ -36,7 +32,6 @@
     </div>
   </div>
   </div>
-
   <script src="{{ asset('assets/jquery/dist/jquery.js') }}"></script>
   <script src="{{ asset('assets/javascript/sidedBar.js') }}"></script>
   <script src="{{ asset('assets/owl.carousel/dist/owl.carousel.min.js') }}"></script>

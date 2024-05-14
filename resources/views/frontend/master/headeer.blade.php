@@ -21,7 +21,7 @@
             <a href="{{url('/')}}"
                 class=" transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Home</a>
             <a href="{{ url('/undangan-cetak') }}"
-                class=" {{request()->is('undangan-cetak') ? 'bg-slate-200 ring-2' : ''}} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
+                class=" {{request()->is('undangan-cetak*') ? 'bg-slate-200 ring-2' : ''}} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
                 Cetak</a>
             <a href=""
                 class="{{request()->is('undangan-digital') ? 'bg-slate-200 ring-2' : ''}} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
