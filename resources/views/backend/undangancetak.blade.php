@@ -140,6 +140,7 @@
                                                             data-terjual="{{ $item->terjual }}"
                                                             data-deskripsi="{{ $item->deskripsi }}"
                                                             data-harga="{{ $item->harga }}" data-uuid={{ $item->uuid }}
+                                                            data-favorite ="{{$item->favorite}}"
                                                             data-bs-target="#upUndanganCetak"><i
                                                                 class="mdi mdi-pencil"></i></button>
                                                     </td>

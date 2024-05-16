@@ -12,12 +12,20 @@ document.querySelector("#upUndanganCetak").addEventListener("show.bs.modal", fun
     var terjual = tombol.terjual;
     var harga = tombol.harga;
     var deskripsi = tombol.deskripsi;
+    var favorite = tombol.favorite;
+    console.log(favorite)
     document.querySelector("#uuid").value = uuid;
     document.querySelector("#name").value = name;
     document.querySelector("#kategori").value = kategori;
     document.querySelector("#stok").value = stok;
     document.querySelector("#terjual").value = terjual;
     document.querySelector("#harga").value = harga;
+    if(favorite == 'Y'){
+        document.querySelector('#favorite').checked = true
+    }else{
+        document.querySelector('#favorite').checked = false
+    }
+    // document.querySelector("#favorite").value = favorite;
     tinymce.get('dek').setContent(deskripsi)
     
     setTimeout(function() {

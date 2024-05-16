@@ -14,13 +14,25 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::create([
+        $admin = User::create([
             'uid'=> Str::uuid(),
             'name'=> 'Sawalinto',
             'email'=> 'sawalinto@gmail.com',
             'id_google'=> null,
             'image'=> 'null',
-            'password'=> bcrypt('sawal123')
+            'password'=> bcrypt('sawal123'),
+            'phone'=> '082274677715'
         ]);
+        $partner = User::create([
+            'uid'=> Str::uuid(),
+            'name'=> 'Partner',
+            'email'=> 'partner@gmail.com',
+            'id_google'=> null,
+            'image'=> 'null',
+            'password'=> bcrypt('sawal123'),
+            'phone'=> '08224574545'
+        ]);
+        $admin->assignRole('admin');
+        $partner->assignRole('partner');
     }
 }

@@ -19,9 +19,20 @@ class IndexController extends Controller
     {
         $kategori = KategoriUndangan::orderBy('kategory', 'asc')->get();
         $jenis = JenisUndanganCetak::orderBy('jenis', 'asc')->get();
+
+        $undangan = UndanganCetak::join('undangans', 'undangans.uuid', '=', 'undangan_cetaks.uid_undangan')
+        ->leftJoin('product_galerries', function ($join) {
+            $join->on('product_galerries.undangan_uuid', '=', 'undangans.uuid')
+                ->whereRaw('product_galerries.id = (select id from product_galerries where undangan_uuid = undangans.uuid limit 1)');
+        })
+        ->join('jenis_undangan_cetaks', 'jenis_undangan_cetaks.uuid', '=', 'undangans.jenis')
+        ->select('undangans.uuid', 'name', 'stok', 'harga', 'gambar', 'slug')
+        ->where('undangan_cetaks.favorite', 'Y')
+        ->orderBy('undangans.name', 'asc')->get();
         return view('frontend.index', [
             'kategory' => $kategori,
-            'jenis' => $jenis
+            'jenis' => $jenis,
+            'undangan'=> $undangan
         ]);
     }
     public function undanganCetak($product = null)

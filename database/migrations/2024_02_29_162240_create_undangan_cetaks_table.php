@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('terjual');
             $table->string('harga');
             $table->string('deskripsi');
+            $table->string('favorite')->nullable();
             $table->timestamps();
         });
     }

@@ -41,21 +41,21 @@
             <p class="text-slate-700">Undangan ini paling banyak dipesan oleh costumer</p>
         </div>
         <div class="center mt-5 mb-10">
-            @for ($i = 0; $i < 10; $i++)
-                <a href="#">
-                    <div class=" rounded-lg ring-1 hover:shadow-lg">
-                        <img class="rounded-lg" src="./assets/images/favorite.jpg" alt="">
+            @foreach ($undangan as $key => $un)
+                <div class=" rounded-lg ring-1 max-w-40 w-40   mx-auto hover:shadow-lg">
+                    <a href="{{ url('product/detail/' . $un->slug) }}">
+                        <img class="rounded-lg object-cover h-32 w-full "
+                            src="{{ asset('./storage/undangancetak/' . $un->gambar) }}" alt="">
                         <div class="p-2">
-                            <p class="font-bold text-slate-700">MQ {{ $i }}</p>
+                            <p class=" text-slate-700">{{ $un->name }}</p>
                             <div class="flex justify-between">
-                                <p class="text-slate-700">Rp1.000</p>
-                                <span class="text-slate-500">Stok: 12</span>
+                                <span class="text-slate-500 text-sm">Rp {{ number_format($un->harga, 0, ',', '.') }}</span>
+                                <span class="text-slate-500 text-sm">Stok: {{ number_format($un->stok, 0, ',', '.') }}</span>
                             </div>
                         </div>
-                    </div>
-                </a>
-            @endfor
-
+                    </a>
+                </div>
+            @endforeach
         </div>
     </section>
     <!-- ===========Kategori -->
@@ -64,12 +64,12 @@
         <div class="overflow-x-auto">
             <div class="flex justify-center">
                 @foreach ($jenis as $jen)
-                <a href="{{url('undangan-cetak/'.$jen->jenis)}}" class="mx-2">
-                    <div
-                        class="w-full text-center   ring-1 rounded-lg px-4 py-2 m-2  cursor-pointer hover:shadow-md text-slate-500 hover:text-slate-700">
-                        {{$jen->jenis}}
-                    </div>
-                </a>
+                    <a href="{{ url('undangan-cetak/' . $jen->jenis) }}" class="mx-2">
+                        <div
+                            class="w-full text-center   ring-1 rounded-lg px-4 py-2 m-2  cursor-pointer hover:shadow-md text-slate-500 hover:text-slate-700">
+                            {{ $jen->jenis }}
+                        </div>
+                    </a>
                 @endforeach
             </div>
         </div>

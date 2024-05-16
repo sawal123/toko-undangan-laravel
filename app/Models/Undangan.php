@@ -32,6 +32,7 @@ class Undangan extends Model
                 'undangans.name',
                 'jenis_undangan_cetaks.jenis',
                 'kategori_undangans.kategory',
+         
                 'undangans.tag',
                 'undangans.slug',
                 // 'product_galerries.gambar',
@@ -39,6 +40,7 @@ class Undangan extends Model
                 'undangan_cetaks.terjual',
                 'undangan_cetaks.harga',
                 'undangan_cetaks.deskripsi',
+                'undangan_cetaks.favorite',
                 'undangans.created_at',
                 // DB::raw('GROUP_CONCAT(product_galerries.gambar) as gambar_array')
             )->groupBy(
@@ -53,6 +55,8 @@ class Undangan extends Model
                 'undangan_cetaks.terjual',
                 'undangan_cetaks.harga',
                 'undangan_cetaks.deskripsi',
+                'undangan_cetaks.favorite',
+                
                 'undangans.created_at',
             )
             ->get();

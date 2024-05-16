@@ -9,7 +9,7 @@ class UndanganCetak extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['uid_undangan' , 'stok', 'terjual', 'harga', 'deskripsi'];
+    protected $fillable = ['uid_undangan' , 'stok', 'terjual', 'harga', 'deskripsi','favorite'];
 
     public function undangan()
     {

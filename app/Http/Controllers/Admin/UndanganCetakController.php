@@ -22,9 +22,9 @@ class UndanganCetakController extends Controller
         // error_reporting(0);
         $jenis = JenisUndanganCetak::all();
         $kategori = KategoriUndangan::all();
-        // dd($kategori);
         $undanganModel = new Undangan();
         $productGalery = ProductGalerry::all();
+        // dd($undanganModel->undanganGet());
 
 
         return view('backend.undangancetak', [
@@ -77,7 +77,7 @@ class UndanganCetakController extends Controller
             'terjual' => 'required|numeric',
             'deskripsi' => 'required',
         ]);
-
+// dd($request->favorite);
         $images = $request->file('gambar');
         if ($request->hasFile('gambar')) :
             $arr = [];
@@ -118,6 +118,7 @@ class UndanganCetakController extends Controller
         $unCetak->terjual = $request->terjual;
         $unCetak->harga = $request->harga;
         $unCetak->deskripsi = $request->deskripsi;
+        $unCetak->favorite = $request->favorite;
 
         $undangan->save();
         $unCetak->save();
@@ -139,7 +140,7 @@ class UndanganCetakController extends Controller
             'terjual' => 'required|numeric',
             'deskripsi' => 'required',
         ]);
-
+// dd($request->favorite);
         $jenis = JenisUndanganCetak::where('jenis', $request->jenis)->first();
         $kategory = KategoriUndangan::where('kategory', $request->kategory)->first();
         $unJen = Undangan::where('uuid', $request->uuid)->first();
@@ -168,7 +169,8 @@ class UndanganCetakController extends Controller
             'stok'=> $request->stok,
             'terjual'=> $request->terjual,
             'harga'=> $request->harga,
-            'deskripsi'=> $request->deskripsi
+            'deskripsi'=> $request->deskripsi,
+            'favorite'=> $request->favorite
         ]);
 
         $unJen->update([

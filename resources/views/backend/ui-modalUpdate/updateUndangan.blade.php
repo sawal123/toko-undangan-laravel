@@ -83,7 +83,12 @@
                                 @enderror
                             </div>
 
-
+                            <div class="form-check my-3">
+                                <input class="form-check-input" type="checkbox" value="Y" name="favorite" id="favorite">
+                                <label class="form-check-label" for="favorite">
+                                  Jadikan Undangan Favorite
+                                </label>
+                              </div>
                             <textarea class="mb-5" style="margin-top: 30px !important" name="deskripsi" id="dek">
                             </textarea>
                             {{-- <div id="dek"></div> --}}

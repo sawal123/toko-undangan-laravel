@@ -34,9 +34,10 @@ Route::post('/authLogin', [AuthController::class, 'AuthLogin']);
 Route::get('/undangan-cetak/{product?}', [IndexController::class, 'undanganCetak']);
 Route::get('/product/detail/{product?}',[IndexController::class, 'productDetail'] );
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'can:dashboard'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', function () {
+            // dd(Auth::user()->can('dashboard'));
             return view('backend.index');
         });
         Route::post('/add-undangancetak', [UndanganCetakController::class, 'add']);
