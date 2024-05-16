@@ -27,6 +27,8 @@ Route::get('/logout', function () {
     return redirect('/');
 });
 Route::post('/authLogin', [AuthController::class, 'AuthLogin']);
+Route::get('auth/google', [AuthController::class, 'authGoogle']);
+Route::get('auth/google/callback', [AuthController::class, 'googleCallback']);
 
 // Route::get('/undangan-cetak', function () {
 //     return view('frontend.undangan');

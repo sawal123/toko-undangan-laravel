@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./assets//i8-icon/i8-icon.css">
 
 
+
 </head>
 
 <body>
@@ -42,10 +43,16 @@
                     </form>
                     <hr class="my-5 pe-8">
                     <p class="text-center mb-3">Or Login With</p>
-                    <button
-                        class="hover:bg-blue-600 transition ease-in-out hover:ring-2 w-full bg-blue-500 text-white rounded-md py-2">
-                        <i class="fab fa-google" style="color: #ffffff;"></i> Google
-                    </button>
+                    <div style="width: 100%">
+                        <form action="{{ url('/auth/google') }}" method="get">
+                            @csrf
+                            <button type="submit"
+                                class="hover:bg-blue-600 transition ease-in-out hover:ring-2 w-full bg-blue-500 text-white rounded-md py-2">
+                                <i class="fab fa-google" style="color: #ffffff;"></i> Google
+                            </button>
+                        </form>
+
+                    </div>
 
                 </div>
             </div>

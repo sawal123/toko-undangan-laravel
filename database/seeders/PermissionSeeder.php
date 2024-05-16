@@ -15,13 +15,15 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $admin = Role::updateOrCreate(['name' => 'admin'], ['name' => 'admin']);
-        Role::updateOrCreate(['name' => 'costumer'], ['name' => 'costumer']);
+        $costumer = Role::updateOrCreate(['name' => 'costumer'], ['name' => 'costumer']);
         $partner = Role::updateOrCreate(['name' => 'partner'], ['name' => 'partner']);
 
         $permission = Permission::updateOrCreate(['name'=> 'dashboard'],['name'=> 'dashboard']);
         $permission2 = Permission::updateOrCreate(['name'=> 'partner'],['name'=> 'partner']);
-        
+        $permission3 = Permission::updateOrCreate(['name'=> 'costumer'],['name'=> 'costumer']);
+
         $admin->givePermissionTo($permission);
         $partner->givePermissionTo($permission2);
+        $costumer->givePermissionTo($permission3);
     }
 }
