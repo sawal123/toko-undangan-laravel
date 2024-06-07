@@ -56,9 +56,15 @@ class AuthController extends Controller
             $finduser = User::where('id_google', $user->getId())->first();
             if($finduser){
                 Auth::login($finduser);
-                return redirect()->intended('/');
+                return redirect()->intended('/dashboard');
             }else{
                 // dd($user);
+                $users=User::where('email', $user->email)->first();
+                if($users){
+                    $users->id_google = $user->getId();
+                    $users->save();
+                    return redirect('/dashboard');
+                }
                 $newUser = User::create([
                     'uid'=> Str::uuid(),
                     'name'=> $user->name,
@@ -71,7 +77,7 @@ class AuthController extends Controller
                 // dd($newUser);
                 $newUser->assignRole('costumer');
                 Auth::login($newUser);
-                return redirect()->intended('/');
+                return redirect('/dashboard');
             }
         }catch(\Throwable $th){
             // dd('KEsalahan');

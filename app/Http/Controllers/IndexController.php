@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JenisUndanganCetak;
-use App\Models\KategoriUndangan;
-use App\Models\ProductGalerry;
+use App\Models\Slide;
 use App\Models\Undangan;
-use App\Models\UndanganCetak;
 use Illuminate\Http\Request;
+use App\Models\UndanganCetak;
+use App\Models\ProductGalerry;
+use App\Models\KategoriUndangan;
 
+use App\Models\JenisUndanganCetak;
+use App\Http\Controllers\Controller;
 use function PHPUnit\Framework\isEmpty;
 
 class IndexController extends Controller
@@ -39,6 +41,7 @@ class IndexController extends Controller
     {
         // dd($product);
         // $product = ProductGalerry::select('gambar', 'undangan_uuid')->get();
+        $slide = Slide::orderBy('sort', 'asc')->get();
         if ($product === null) {
             $undangan = UndanganCetak::join('undangans', 'undangans.uuid', '=', 'undangan_cetaks.uid_undangan')
                 ->leftJoin('product_galerries', function ($join) {
@@ -65,7 +68,8 @@ class IndexController extends Controller
         $jenis = JenisUndanganCetak::orderBy('jenis', 'asc')->get();
         return view('frontend.undangan', [
             'undangan' => $undangan,
-            'jenis' => $jenis
+            'jenis' => $jenis,
+            'slide'=> $slide
         ]);
     }
     public function productDetail($product = null)
@@ -95,5 +99,8 @@ class IndexController extends Controller
                 'serupa'=>$serupa
             ]);
         }
+    }
+    public function undanganDigital(){
+        return view('frontend.stuck.noData');
     }
 }
