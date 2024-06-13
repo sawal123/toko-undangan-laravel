@@ -50,7 +50,8 @@
                             <p class=" text-slate-700">{{ $un->name }}</p>
                             <div class="flex justify-between">
                                 <span class="text-slate-500 text-sm">Rp {{ number_format($un->harga, 0, ',', '.') }}</span>
-                                <span class="text-slate-500 text-sm">Stok: {{ number_format($un->stok, 0, ',', '.') }}</span>
+                                <span class="text-slate-500 text-sm">Stok:
+                                    {{ number_format($un->stok, 0, ',', '.') }}</span>
                             </div>
                         </div>
                     </a>
@@ -98,54 +99,22 @@
     <section class="my-2 lg:px-8 text-slate-700">
         <h2 class="font-bold text-center my-10">Pertanyaan yang sering diajukan</h2>
         <div class="grid lg:grid-rows-1 md:grid-cols-1 gap-4 xl:mx-80 md:mx-20 mx-8">
-            <div class=" p-2 ring-2 ring-blue-500 rounded-lg overflow-hidden">
-                <button class="w-full ac">
-                    <div class="flex justify-between cursor-pointer p-2 w-full ">
-                        <p class=" font-bold">Apakah ini Gratis Ongkir?</p>
-                        <i class="fas fa-arrow-right p-0 m-0 my-auto transform transition duration-300 delay-75  "></i>
 
+            @foreach ($question as $qs)
+                <div class=" p-2 ring-2 ring-blue-500 rounded-lg overflow-hidden">
+                    <button class="w-full ac">
+                        <div class="flex justify-between cursor-pointer p-2 w-full ">
+                            <p class=" font-bold">{{ $qs->title }}</p>
+                            <i class="fas fa-arrow-right p-0 m-0 my-auto  transform transition duration-300 pnh"></i>
+
+                        </div>
+                    </button>
+
+                    <div class="p-2 hidden transition-opacity  delay-100 duration-500  ease-in-out subAc">
+                        <p>{{ $qs->question }}</p>
                     </div>
-                </button>
-
-                <div class="p-2 hidden transition-opacity  delay-100 duration-500  ease-in-out subAc">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusamus eius aperiam amet,
-                        molestias rem animi expedita id sapiente. Architecto dolorum eos illum dicta dolorem repellat
-                        placeat
-                        aliquam laboriosam harum.</p>
                 </div>
-            </div>
-            <div class=" p-2 ring-2 ring-blue-500 rounded-lg overflow-hidden">
-                <button class="w-full ac">
-                    <div class="flex justify-between cursor-pointer p-2 w-full ">
-                        <p class=" font-bold">Apakah ini Gratis Ongkir?</p>
-                        <i class="fas fa-arrow-right p-0 m-0 my-auto transform transition duration-300 pnh"></i>
-
-                    </div>
-                </button>
-
-                <div class="p-2 hidden transition-opacity  delay-100 duration-500  ease-in-out subAc">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusamus eius aperiam amet,
-                        molestias rem animi expedita id sapiente. Architecto dolorum eos illum dicta dolorem repellat
-                        placeat
-                        aliquam laboriosam harum.</p>
-                </div>
-            </div>
-            <div class=" p-2 ring-2 ring-blue-500 rounded-lg overflow-hidden">
-                <button class="w-full ac">
-                    <div class="flex justify-between cursor-pointer p-2 w-full ">
-                        <p class=" font-bold">Apakah ini Gratis Ongkir?</p>
-                        <i class="fas fa-arrow-right p-0 m-0 my-auto  transform transition duration-300 pnh"></i>
-
-                    </div>
-                </button>
-
-                <div class="p-2 hidden transition-opacity  delay-100 duration-500  ease-in-out subAc">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusamus eius aperiam amet,
-                        molestias rem animi expedita id sapiente. Architecto dolorum eos illum dicta dolorem repellat
-                        placeat
-                        aliquam laboriosam harum.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
     <section class="my-2 mb-20">
@@ -154,39 +123,23 @@
             <p>Apakah kata costumer tentang produk kami?</p>
         </div>
         <div class="owl-carousel owl-teme">
-            <div class="p-5 ring-1 rounded-lg  mx-2">
-                <div class="heading text-start mb-4">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit nisi explicabo porro maxime natus saepe
-                    amet
-                    sed rem modi incidunt! Consequuntur sunt nam deserunt rerum laborum facere, neque corrupti iste.
-                </div>
-                <div class="flex">
-                    <img class="w-10 h-10 rounded-full object-cover" style="width: 2.5rem !important;"
-                        src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="">
-                    <div class="text-start ms-2 my-auto">
-                        <div class="font-bold p-0 m-0">Hendro Satrio</div>
-                        <div class="text-slate-500 p-0 m-0">Order Lintang 31</div>
+            @foreach ($testi as $ts)
+                <div class="p-5 ring-1 rounded-lg  mx-2">
+                    <div class="heading text-start mb-4">
+                        {{ $ts->testimonial }}
+                    </div>
+                    <div class="flex">
+                        <img class="w-10 h-10 rounded-full object-cover" style="width: 2.5rem !important;"
+                            src="{{asset('storage/testimonial/'. $ts->gambar)}}"
+                            alt="">
+                        <div class="text-start ms-2 my-auto">
+                            <div class="font-bold p-0 m-0">{{$ts->nama}}</div>
+                            {{-- <div class="text-slate-500 p-0 m-0">Order Lintang 31</div> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="p-5 ring-1 rounded-lg  mx-2">
-                <div class="heading text-start mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, quis. Minima voluptatibus velit sed
-                    cumque,
-                    labore ipsam molestiae, at iusto cupiditate ipsa architecto qui repellat perferendis hic quam placeat
-                    ex?
-                </div>
-                <div class="flex">
-                    <img class="w-10 h-10 rounded-full object-cover" style="width: 2.5rem !important;"
-                        src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="">
-                    <div class="text-start ms-2 my-auto">
-                        <div class="font-bold p-0 m-0">Hendro Satrio</div>
-                        <div class="text-slate-500 p-0 m-0">Order Lintang 31</div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
 
         </div>
 

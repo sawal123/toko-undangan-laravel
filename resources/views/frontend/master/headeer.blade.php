@@ -3,7 +3,7 @@
         <div class="flex lg:flex-1">
             <a href="" class="-m-1.5 p-1.5">
                 <span class="sr-only">You Company</span>
-                <img src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""
+                <img src="{{asset('storage/logo/logo.svg')}}" alt=""
                     class="h-8 w-auto" />
             </a>
         </div>

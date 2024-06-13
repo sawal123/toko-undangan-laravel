@@ -11,6 +11,9 @@ use App\Models\KategoriUndangan;
 
 use App\Models\JenisUndanganCetak;
 use App\Http\Controllers\Controller;
+use App\Models\Question;
+use App\Models\Testimonial;
+
 use function PHPUnit\Framework\isEmpty;
 
 class IndexController extends Controller
@@ -21,6 +24,9 @@ class IndexController extends Controller
     {
         $kategori = KategoriUndangan::orderBy('kategory', 'asc')->get();
         $jenis = JenisUndanganCetak::orderBy('jenis', 'asc')->get();
+
+        $testi = Testimonial::all();
+        $question = Question::all();
 
         $undangan = UndanganCetak::join('undangans', 'undangans.uuid', '=', 'undangan_cetaks.uid_undangan')
         ->leftJoin('product_galerries', function ($join) {
@@ -34,13 +40,14 @@ class IndexController extends Controller
         return view('frontend.index', [
             'kategory' => $kategori,
             'jenis' => $jenis,
-            'undangan'=> $undangan
+            'undangan'=> $undangan,
+            'testi' => $testi,
+            'question'=>$question
         ]);
     }
     public function undanganCetak($product = null)
     {
-        // dd($product);
-        // $product = ProductGalerry::select('gambar', 'undangan_uuid')->get();
+
         $slide = Slide::orderBy('sort', 'asc')->get();
         if ($product === null) {
             $undangan = UndanganCetak::join('undangans', 'undangans.uuid', '=', 'undangan_cetaks.uid_undangan')
@@ -49,9 +56,8 @@ class IndexController extends Controller
                         ->whereRaw('product_galerries.id = (select id from product_galerries where undangan_uuid = undangans.uuid limit 1)');
                 })
                 ->select('uuid', 'name', 'stok', 'harga', 'gambar', 'slug')
-                ->orderBy('undangans.name', 'asc')->get();
-
-            // dd($undangan);
+                ->orderBy('undangans.name', 'asc')->paginate(8);
+                // dd($undangan);
 
         } else {
             $undangan = UndanganCetak::join('undangans', 'undangans.uuid', '=', 'undangan_cetaks.uid_undangan')
@@ -62,7 +68,7 @@ class IndexController extends Controller
                 ->join('jenis_undangan_cetaks', 'jenis_undangan_cetaks.uuid', '=', 'undangans.jenis')
                 ->select('undangans.uuid', 'name', 'stok', 'harga', 'gambar', 'slug')
                 ->where('jenis_undangan_cetaks.jenis', $product)
-                ->orderBy('undangans.name', 'asc')->get();
+                ->orderBy('undangans.name', 'asc')->paginate(8);
         }
 
         $jenis = JenisUndanganCetak::orderBy('jenis', 'asc')->get();
