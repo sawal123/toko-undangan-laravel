@@ -67,7 +67,7 @@
             </div>
         @else
             <div class="w-full">
-                <h3 class="text-center">Data Tidak Ada</h3>
+                <h3 class="text-center">Maaf Data Belum Tersedia</h3>
             </div>
         @endif
     </section>

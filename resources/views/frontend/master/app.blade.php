@@ -5,10 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ERA DIGITAL</title>
-  @vite('resources/css/app.css')
+  {{-- @vite('resources/css/app.css') --}}
+  <link rel="stylesheet" href="{{asset('build/assets/app-B2C0lvP0.css')}}">
+  <link rel="stylesheet" href="{{asset('build/assets/aapp-CifqVuM1.js')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/output.css') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
-  <link rel="stylesheet" href="{{ asset('src/input.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('src/input.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('assets/slick/slick/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/slick/slick/slick-theme.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/icon/fontawesome-free-6.5.1-web/css/all.min.css') }}">

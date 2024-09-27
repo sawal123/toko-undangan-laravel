@@ -3,18 +3,13 @@
     <section class="mt-32">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
             <div class="p-5  lg:w-1/2 sm:w-full  mx-auto">
-                <!-- <img class=" rounded-xl shadow-lg h-full w-full  object-cover  mx-auto"  src="https://img.lazcdn.com/g/p/14216a5eb1dd9121ec1f262a402c9b1f.jpg_720x720q80.jpg" alt=""> -->
-                {{-- @foreach ($galery as $item) --}}
-                {{-- {{}} --}}
                 <img id="expandedImg" src="{{ asset('storage/undangancetak/' . $galery['0']['gambar']) }}"
-                    class="rounded-xl shadow-lg lg:h-auto sm:h-1/2 w-full  object-cover  mx-auto">
-                {{-- @endforeach --}}
-                <div class="flex overflow-x-auto my-6">
+                    class="rounded-xl shadow-lg object-cover  h-[250px] w-[300px] ">
 
+                <div class="flex overflow-x-auto my-6">
                     @foreach ($galery as $items)
                         <img class=" object-cover rounded-xl h-16 w-16 hover:ring-2 cursor-pointer mx-2 my-2"
-                            src="{{ asset('storage/undangancetak/' . $items->gambar) }}" alt="g"
-                            onclick="myImg(this)">
+                            src="{{ asset('storage/undangancetak/' . $items->gambar) }}" alt="g" onclick="myImg(this)">
                     @endforeach
                 </div>
             </div>
@@ -29,7 +24,7 @@
                     <hr class="my-2">
                     {!! $undangan->deskripsi !!}</p>
                 </div>
-                <a href="#"
+                <a href="https://wa.me/6282274677715?text=Saya+ingin+Pesan+Undangan+{{$undangan->name}}"
                     class="hover:ring-1 hover:bg-blue-600  transition ease-in-out rounded-lg bg-blue-500 text-white px-6 py-2 my-5">Order</a>
             </div>
         </div>
@@ -43,21 +38,22 @@
         </div>
         <div class="grid gap-4 lg:grid-cols-6 grid-cols-2 xl:grid-cols-8">
             @foreach ($serupa as $serup)
-            <div class=" rounded-lg ring-1 max-w-40 w-40   mx-auto hover:shadow-lg">
-              <a href="{{ url('product/detail/' . $serup->slug) }}">
-                  <img class="rounded-lg object-cover h-32 w-full "
-                      src="{{ asset('./storage/undangancetak/' . $serup->gambar) }}" alt="">
-                  <div class="p-2">
-                      <p class=" text-slate-700">{{ $serup->name }}</p>
-                      <div class="flex justify-between">
-                        <h5 class="text-sm">Rp {{ number_format($serup->harga, 0, ',', '.') }}</h5>
-                          <span class="text-slate-500 text-sm">Stok: {{ $serup->stok }}</span>
-                      </div>
-                  </div>
-              </a>
-          </div>
+                <div class=" rounded-lg ring-1 max-w-40 w-40   mx-auto hover:shadow-lg">
+                    <a href="{{ url('product/detail/' . $serup->slug) }}">
+                        <img class="rounded-lg object-cover h-32 w-full "
+                            src="{{ asset('./storage/undangancetak/' . $serup->gambar) }}" alt="">
+                        <div class="p-2">
+                            <p class=" text-slate-700">{{ $serup->name }}</p>
+                            <div class="flex justify-between">
+                                <h5 class="text-sm">Rp {{ number_format($serup->harga, 0, ',', '.') }}</h5>
+                                <span class="text-slate-500 text-sm">Stok: {{ $serup->stok }}</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             @endforeach
 
         </div>
     </section>
+  
 @endsection

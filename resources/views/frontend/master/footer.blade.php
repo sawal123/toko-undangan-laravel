@@ -11,15 +11,14 @@
             <ul>
               <li class="text-white my-5">Undangan</li>
               <li class="text-white my-5">Undangan Digital</li>
-              <li class="text-white my-5">MarketPlace</li>
             </ul>
           </div>
           <div class="">
             <div class="font-bold text-white lg:text-xl">Era Digital</div>
             <ul class="text-white">
               <li class="text-white my-5">+62 822 7467 7715</li>
-              <li class="text-white my-5">sawalinto@gmail.com</li>
-              <li class="text-white my-5">2023-2024</li>
+              <li class="text-white my-5"><a href="https://maps.app.goo.gl/mbREhcPjCgX5zhPj6">
+                Jl. Talun kenas - Patumbak Gg. Horas</a></li>
             </ul>
           </div>
         </div>

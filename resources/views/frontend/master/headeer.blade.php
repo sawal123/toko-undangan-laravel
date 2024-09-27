@@ -3,8 +3,7 @@
         <div class="flex lg:flex-1">
             <a href="" class="-m-1.5 p-1.5">
                 <span class="sr-only">You Company</span>
-                <img src="{{asset('storage/logo/logo.svg')}}" alt=""
-                    class="h-8 w-auto" />
+                <img src="{{ asset('storage/logo/logo.svg') }}" alt="" class="h-8 w-auto" />
             </a>
         </div>
         <!-- burger -->
@@ -18,22 +17,22 @@
             </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-8 *:px-2 ">
-            <a href="{{url('/')}}"
+            <a href="{{ url('/') }}"
                 class=" transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Home</a>
             <a href="{{ url('/undangan-cetak') }}"
-                class=" {{request()->is('undangan-cetak*') ? 'bg-slate-200 ring-2' : ''}} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
+                class=" {{ request()->is('undangan-cetak*') ? 'bg-slate-200 ring-2' : '' }} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
                 Cetak</a>
-            <a href="{{url('/undangan-digital')}}"
-                class="{{request()->is('undangan-digital') ? 'bg-slate-200 ring-2' : ''}} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
+            <a href="{{ url('/undangan-digital') }}"
+                class="{{ request()->is('undangan-digital') ? 'bg-slate-200 ring-2' : '' }} transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Undangan
                 Digital</a>
-             <a href="https://wa.me/6282274677715"
+            <a href="https://wa.me/6282274677715"
                 class="transition delay-75 duration-150 ease-in-out text-sm font-semibold leading-6 text-gray-900 hover:bg-slate-200 hover:ring-2 rounded-lg">Contact
                 Us</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
 
             @if (Auth::user())
-            {{-- <span>{{Auth::user()->name}}</span> --}}
+                {{-- <span>{{Auth::user()->name}}</span> --}}
                 <a href="{{ url('logout') }}" class="text-sm font-semibold leading-6 text-gray-900">Log Out <span
                         aria-hidden="true">&rarr;</span></a>
             @else
@@ -64,22 +63,28 @@
             <div class=" mt-6 flow-root">
                 <div class="-my-6 divide-y divide-gray-500/10">
                     <div class="space-y-2 py-6">
-                        <a href="#"
+                        <a href="/"
                             class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</a>
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Undangan</a>
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Undangan
+                        <a href="{{ url('/undangan-cetak') }}"
+                            class="-mx-3 {{ request()->is('undangan-cetak*') ? 'bg-slate-200 ring-2' : '' }} block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Undangan
+                            Cetak</a>
+                        <a href="{{ url('/undangan-digital') }}"
+                            class="{{ request()->is('undangan-digital') ? 'bg-slate-200 ring-2' : '' }} -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Undangan
                             Digital</a>
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
-                        <a href="#"
+
+                        <a href="https://wa.me/6282274677715"
                             class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Hubungi</a>
                     </div>
                     <div class="py-6">
-                        <a href="#"
-                            class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
-                            in</a>
+                        @if (Auth::user())
+                            <a href="{{ url('login') }}"
+                                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
+                                in</a>
+                        @else
+                            <a href="{{ url('logout') }}"
+                                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
+                                out</a>
+                        @endif
                     </div>
                 </div>
             </div>
